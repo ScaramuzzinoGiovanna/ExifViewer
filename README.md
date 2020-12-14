@@ -1,2 +1,2 @@
 # ExifViewer
-mini project of human computer interaction course
+Mini project of human computer interaction course
