@@ -1,20 +1,23 @@
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtProperty
 
+
 # A PyQT5 Observable object class.
 class Observable(QObject):
     imgAdded = pyqtSignal(object)
     imgDel = pyqtSignal(object)
+    imgUp = pyqtSignal(object)
 
-    def __init__(self, val):
+    def __init__(self):
         super().__init__()
         self.listElem = []
-        # self._values =self.values.append(val)
 
-    def observe(self, slot1,slot2):
-        self.imgAdded.connect(slot1) #permette di connettere gli ascoltatori, e quando verrà emesso il segnale verranno contattati
+    def observe(self, slot1, slot2, slot3):
+        self.imgAdded.connect(slot1)
         self.imgDel.connect(slot2)
+        self.imgUp.connect(slot3)
+
     # We access the value through this getter/setter property.
-    @pyqtProperty(object, notify=imgAdded)
+    @pyqtProperty(object)
     def values(self):
         return self.listElem
 
@@ -25,14 +28,21 @@ class Observable(QObject):
     def values(self, newElems):
         for elem in newElems:
             self.listElem.append(elem)
-        self.imgAdded.emit(newElems)  #emesso dopo che il valore è stato cambato
+        self.imgAdded.emit(newElems)  # emesso dopo che il valore è stato cambato
 
     def remove_imgs(self, items):
+        current = False
         imgs = [i.toolTip() for i in items]
         for elem in imgs:
             self.listElem.remove(elem)
-        self.imgDel.emit(items)
+            if elem == self.currentImg:
+                current = True
+        self.imgDel.emit([items, current])
 
     def remove_all_imgs(self):
         self.listElem = []
-        self.imgDel.emit(1)
+        self.imgDel.emit([1, True])
+
+    def upload_img(self, item):
+        self.currentImg = item.toolTip()
+        self.imgUp.emit(self.currentImg)  # ritorna il path img
