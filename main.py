@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLabel, QListWidgetItem, QListView
-from PyQt5 import QtCore
-from PyQt5.QtGui import QPixmap, QIcon
+from PyQt5 import Qt
+from PyQt5.QtGui import QPixmap, QIcon, QTransform
 from ui_exifViewer import Ui_ExifViewer
 from model import M
 import sys
@@ -15,10 +15,10 @@ class ExifViewer(QMainWindow):
         self.ui = Ui_ExifViewer()
         self.ui.setupUi(self)
 
-        self.ui.button_rotateRight.clicked.connect(lambda: print('rotR'))
-        self.ui.button_rotateLeft.clicked.connect(lambda: print(''))
-        self.ui.button_previous.clicked.connect(lambda: print(''))
-        self.ui.button_next.clicked.connect(lambda: print(''))
+        self.ui.button_rotateRight.clicked.connect(self.rotateRight)
+        self.ui.button_rotateLeft.clicked.connect(self.rotateLeft)
+        self.ui.button_previous.clicked.connect(M.previous_img)
+        self.ui.button_next.clicked.connect(M.next_img)
         self.ui.button_addImages.clicked.connect(lambda: M.add_img(
             QFileDialog.getOpenFileNames(self, 'Open file', expanduser("~"), "Image files (*.jpg)")))
         self.ui.button_deleteAllImages.clicked.connect(M.delete_AllImgs)
@@ -49,8 +49,25 @@ class ExifViewer(QMainWindow):
     def defaultImage(self):
         self.ui.image.setText('Select image')
 
-    def show_img(self, path_img):
+    def show_img(self, item_info):
+        path_img = item_info[0]
+        indx = item_info[1]
         self.ui.image.upload_img(path_img)
+        self.ui.listWidget.clearSelection()
+        self.ui.listWidget.setCurrentRow(indx)
+
+    def rotateRight(self):
+        current_img = M.listPreviewImages.currentImg
+        if current_img != None:
+            self.ui.image.rotateRight()
+
+    def rotateLeft(self):
+        current_img = M.listPreviewImages.currentImg
+        if current_img != None:
+            self.ui.image.rotateLeft()
+
+    def geolocalization(self):
+        self.ui.image.geolocalization()
 
 
 if __name__ == '__main__':

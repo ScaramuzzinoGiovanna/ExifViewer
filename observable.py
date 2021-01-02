@@ -10,6 +10,7 @@ class Observable(QObject):
     def __init__(self):
         super().__init__()
         self.listElem = []
+        self.currentImg = None
 
     def observe(self, slot1, slot2, slot3):
         self.imgAdded.connect(slot1)
@@ -43,6 +44,11 @@ class Observable(QObject):
         self.listElem = []
         self.imgDel.emit([1, True])
 
-    def upload_img(self, item):
-        self.currentImg = item.toolTip()
-        self.imgUp.emit(self.currentImg)  # ritorna il path img
+    def upload_img(self, item, i):
+        if type(item) == str:  # è già il path dell'imm
+            self.currentImg = item
+        else:
+            self.currentImg = item.toolTip()
+            i = self.listElem.index(self.currentImg)
+        indx = i
+        self.imgUp.emit([self.currentImg, indx])  # ritorna il path img

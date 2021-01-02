@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QListWidget
-from PyQt5.QtCore import Qt, QEvent
+from PyQt5.QtCore import Qt
 
 
 class ListPreviewImages(QListWidget):

@@ -400,26 +400,29 @@
                <italic>false</italic>
                <bold>false</bold>
                <underline>false</underline>
-               <strikeout>false</strikeout>
-               <kerning>true</kerning>
+                  <strikeout>false</strikeout>
+                  <kerning>true</kerning>
               </font>
              </property>
-             <property name="acceptDrops">
-              <bool>true</bool>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string notr="true">Select image</string>
-             </property>
-             <property name="scaledContents">
-              <bool>true</bool>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="wordWrap">
+                <property name="acceptDrops">
+                    <bool>true</bool>
+                </property>
+                <property name="autoFillBackground">
+                    <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                    <string notr="true"/>
+                </property>
+                <property name="text">
+                    <string notr="true">Select image</string>
+                </property>
+                <property name="scaledContents">
+                    <bool>false</bool>
+                </property>
+                <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                </property>
+                <property name="wordWrap">
               <bool>true</bool>
              </property>
             </widget>
