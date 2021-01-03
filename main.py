@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLabel, QListWidgetItem, QListView
-from PyQt5 import Qt
-from PyQt5.QtGui import QPixmap, QIcon, QTransform
+from PyQt5 import QtWidgets
+from PyQt5.QtGui import QPixmap, QIcon, QTransform, QColor
 from ui_exifViewer import Ui_ExifViewer
 from model import M
 import sys
@@ -14,6 +14,8 @@ class ExifViewer(QMainWindow):
         # set up the user interface from Designer
         self.ui = Ui_ExifViewer()
         self.ui.setupUi(self)
+        self.ui.ExifDataTab.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem('Exif'))
+        self.ui.ExifDataTab.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem('Data'))
 
         self.ui.button_rotateRight.clicked.connect(self.rotateRight)
         self.ui.button_rotateLeft.clicked.connect(self.rotateLeft)
@@ -44,6 +46,7 @@ class ExifViewer(QMainWindow):
                 self.ui.listWidget.takeItem(self.ui.listWidget.row(item))
         if delCurrentImageUp == True:
             self.ui.image.clear()
+            self.ui.ExifDataTab.clearContents()
             self.defaultImage()
 
     def defaultImage(self):
@@ -52,9 +55,23 @@ class ExifViewer(QMainWindow):
     def show_img(self, item_info):
         path_img = item_info[0]
         indx = item_info[1]
+        exif = item_info[2]
         self.ui.image.upload_img(path_img)
         self.ui.listWidget.clearSelection()
         self.ui.listWidget.setCurrentRow(indx)
+        self.show_exifData(exif)
+
+    def show_exifData(self, exif):
+        self.ui.ExifDataTab.clearContents()
+        if exif == None or len(exif) == 0:
+            self.ui.ExifDataTab.setRowCount(1)
+            self.ui.ExifDataTab.setItem(0, 0, QtWidgets.QTableWidgetItem('No Exif Data for this image'))
+        else:
+            self.ui.ExifDataTab.setRowCount(len(exif))
+            items = exif.items()
+            for i, elem in enumerate(items):
+                self.ui.ExifDataTab.setItem(i, 0, QtWidgets.QTableWidgetItem(str(elem[0])))
+                self.ui.ExifDataTab.setItem(i, 1, QtWidgets.QTableWidgetItem(str(elem[1])))
 
     def rotateRight(self):
         current_img = M.listPreviewImages.currentImg

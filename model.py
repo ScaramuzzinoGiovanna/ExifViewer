@@ -1,4 +1,6 @@
 from observable import Observable
+import PIL.ExifTags
+import PIL.Image
 
 
 class Model:
@@ -18,27 +20,37 @@ class Model:
     def delete_SelectedImgs(self, items):
         self.listPreviewImages.remove_imgs(items)
 
-    def upload_img(self, item, indx=None):
-        self.listPreviewImages.upload_img(item, indx)
+    def upload_img(self, path_img):
+        if type(path_img) != str:
+            path_img = path_img.toolTip()
+        exif = self.extract_exif_data(path_img)
+        self.listPreviewImages.upload_img(path_img, exif)
 
     def previous_img(self):
-        # list = self.listPreviewImages.values
-        # if not list:
-        #     return
         current_img = self.listPreviewImages.currentImg
-        if current_img != None:
+        if current_img != None and current_img in self.listPreviewImages.values:  # TODO: qui volendo puoi impostare che venga selezionata l'imm dopo quando viene vcancellata una imm
             list = self.listPreviewImages.values
             indx_prev = (list.index(current_img) - 1) % len(list)
             prev_img = list[indx_prev]
-            self.upload_img(prev_img, indx_prev)
+            self.upload_img(prev_img)
 
     def next_img(self):
         current_img = self.listPreviewImages.currentImg
-        if current_img != None:
+        if current_img != None and current_img in self.listPreviewImages.values:
             list = self.listPreviewImages.values
             indx_prev = (list.index(current_img) + 1) % len(list)
             prev_img = list[indx_prev]
-            self.upload_img(prev_img, indx_prev)
+            self.upload_img(prev_img)
+
+    def extract_exif_data(self, path_img):
+        try:
+            img = PIL.Image.open(path_img)
+            self.exif = {PIL.ExifTags.TAGS[k]: v
+                         for k, v in img._getexif().items()
+                         if k in PIL.ExifTags.TAGS}
+            return self.exif
+        except:
+            return None
 
 
 M = Model()

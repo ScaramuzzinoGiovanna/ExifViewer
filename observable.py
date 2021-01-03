@@ -44,11 +44,7 @@ class Observable(QObject):
         self.listElem = []
         self.imgDel.emit([1, True])
 
-    def upload_img(self, item, i):
-        if type(item) == str:  # è già il path dell'imm
-            self.currentImg = item
-        else:
-            self.currentImg = item.toolTip()
-            i = self.listElem.index(self.currentImg)
-        indx = i
-        self.imgUp.emit([self.currentImg, indx])  # ritorna il path img
+    def upload_img(self, path_img, exif):
+        self.currentImg = path_img
+        indx = self.listElem.index(self.currentImg)
+        self.imgUp.emit([self.currentImg, indx, exif])  # ritorna il path img

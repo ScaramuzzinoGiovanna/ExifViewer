@@ -8,10 +8,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_ExifViewer(object):
     def setupUi(self, ExifViewer):
         ExifViewer.setObjectName("ExifViewer")
-        ExifViewer.resize(1677, 1058)
+        ExifViewer.resize(2198, 889)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -38,11 +39,12 @@ class Ui_ExifViewer(object):
         self.DataExifTab_Layout.setObjectName("DataExifTab_Layout")
         self.ExifDataTab = QtWidgets.QTableWidget(self.centralwidget)
         self.ExifDataTab.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.ExifDataTab.sizePolicy().hasHeightForWidth())
         self.ExifDataTab.setSizePolicy(sizePolicy)
+        self.ExifDataTab.setMinimumSize(QtCore.QSize(200, 0))
         self.ExifDataTab.setMaximumSize(QtCore.QSize(800, 16777215))
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -55,28 +57,25 @@ class Ui_ExifViewer(object):
         self.ExifDataTab.setLineWidth(6)
         self.ExifDataTab.setMidLineWidth(0)
         self.ExifDataTab.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.ExifDataTab.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        self.ExifDataTab.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.ExifDataTab.setAutoScroll(True)
         self.ExifDataTab.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.ExifDataTab.setTabKeyNavigation(False)
         self.ExifDataTab.setProperty("showDropIndicator", False)
         self.ExifDataTab.setAlternatingRowColors(False)
-        self.ExifDataTab.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.ExifDataTab.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.ExifDataTab.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.ExifDataTab.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollPerPixel)
         self.ExifDataTab.setShowGrid(True)
         self.ExifDataTab.setGridStyle(QtCore.Qt.SolidLine)
         self.ExifDataTab.setCornerButtonEnabled(True)
-        self.ExifDataTab.setRowCount(50)
+        self.ExifDataTab.setRowCount(0)
         self.ExifDataTab.setColumnCount(2)
         self.ExifDataTab.setObjectName("ExifDataTab")
-        item = QtWidgets.QTableWidgetItem()
-        self.ExifDataTab.setItem(0, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.ExifDataTab.setItem(0, 1, item)
-        self.ExifDataTab.horizontalHeader().setVisible(False)
+        self.ExifDataTab.horizontalHeader().setVisible(True)
+        self.ExifDataTab.horizontalHeader().setDefaultSectionSize(394)
         self.ExifDataTab.horizontalHeader().setHighlightSections(False)
-        self.ExifDataTab.horizontalHeader().setMinimumSectionSize(200)
+        self.ExifDataTab.horizontalHeader().setMinimumSectionSize(100)
         self.ExifDataTab.verticalHeader().setVisible(False)
         self.ExifDataTab.verticalHeader().setCascadingSectionResizes(False)
         self.DataExifTab_Layout.addWidget(self.ExifDataTab)
@@ -269,7 +268,8 @@ class Ui_ExifViewer(object):
         self.listWidget.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.listWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.listWidget.setEditTriggers(QtWidgets.QAbstractItemView.DoubleClicked|QtWidgets.QAbstractItemView.EditKeyPressed|QtWidgets.QAbstractItemView.SelectedClicked)
+        self.listWidget.setEditTriggers(
+            QtWidgets.QAbstractItemView.DoubleClicked | QtWidgets.QAbstractItemView.EditKeyPressed | QtWidgets.QAbstractItemView.SelectedClicked)
         self.listWidget.setDragEnabled(True)
         self.listWidget.setDragDropMode(QtWidgets.QAbstractItemView.DragDrop)
         self.listWidget.setDefaultDropAction(QtCore.Qt.IgnoreAction)
@@ -316,13 +316,6 @@ class Ui_ExifViewer(object):
     def retranslateUi(self, ExifViewer):
         _translate = QtCore.QCoreApplication.translate
         ExifViewer.setWindowTitle(_translate("ExifViewer", "Exif data"))
-        __sortingEnabled = self.ExifDataTab.isSortingEnabled()
-        self.ExifDataTab.setSortingEnabled(False)
-        item = self.ExifDataTab.item(0, 0)
-        item.setText(_translate("ExifViewer", "Exif"))
-        item = self.ExifDataTab.item(0, 1)
-        item.setText(_translate("ExifViewer", "Data"))
-        self.ExifDataTab.setSortingEnabled(__sortingEnabled)
         self.Geolocalization.setText(_translate("ExifViewer", "Geolocalization"))
         self.button_rotateLeft.setWhatsThis(_translate("ExifViewer", "Rotate Left"))
         self.button_rotateRight.setWhatsThis(_translate("ExifViewer", "Rotate Rigth"))
@@ -330,6 +323,7 @@ class Ui_ExifViewer(object):
         self.listWidget.setSortingEnabled(False)
         self.button_deleteSelectedImages.setText(_translate("ExifViewer", "Delete Selected"))
         self.button_deleteAllImages.setText(_translate("ExifViewer", "Delete All"))
+
 
 from imageView import ImageView
 from listPreviewImages import ListPreviewImages
