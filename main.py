@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLabel, QListWidgetItem, QListView
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLabel, QListWidgetItem
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QPixmap, QIcon, QTransform, QColor
+from PyQt5.QtGui import QPixmap, QIcon, QFont
 from ui_exifViewer import Ui_ExifViewer
 from model import M
 import sys
@@ -14,8 +14,8 @@ class ExifViewer(QMainWindow):
         # set up the user interface from Designer
         self.ui = Ui_ExifViewer()
         self.ui.setupUi(self)
-        self.ui.ExifDataTab.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem('Exif'))
-        self.ui.ExifDataTab.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem('Data'))
+
+        self.initTable()
 
         self.ui.button_rotateRight.clicked.connect(self.rotateRight)
         self.ui.button_rotateLeft.clicked.connect(self.rotateLeft)
@@ -27,7 +27,17 @@ class ExifViewer(QMainWindow):
         self.ui.button_deleteSelectedImages.clicked.connect(
             lambda: M.delete_SelectedImgs(self.ui.listWidget.selectedItems()))
         self.ui.listWidget.itemDoubleClicked.connect(lambda: M.upload_img(self.ui.listWidget.currentItem()))
+
         M.observe(self.show_preview_image_into_list, self.delete_preview, self.show_img)
+
+    def initTable(self):
+        self.ui.ExifDataTab.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem('Exif'))
+        self.ui.ExifDataTab.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem('Data'))
+        self.ui.ExifDataTab.horizontalHeader().setVisible(True)
+        font = self.ui.ExifDataTab.horizontalHeader().font()
+        font.setPointSize(16)
+        font.setBold(True)
+        self.ui.ExifDataTab.horizontalHeader().setFont(font)
 
     def show_preview_image_into_list(self, img_path):
         for img in img_path:
@@ -47,10 +57,11 @@ class ExifViewer(QMainWindow):
         if delCurrentImageUp == True:
             self.ui.image.clear()
             self.ui.ExifDataTab.clearContents()
+            self.ui.ExifDataTab.setRowCount(0)
             self.defaultImage()
 
     def defaultImage(self):
-        self.ui.image.setText('Select image')
+        self.ui.image.setText('No image loaded')
 
     def show_img(self, item_info):
         path_img = item_info[0]
@@ -63,6 +74,7 @@ class ExifViewer(QMainWindow):
 
     def show_exifData(self, exif):
         self.ui.ExifDataTab.clearContents()
+
         if exif == None or len(exif) == 0:
             self.ui.ExifDataTab.setRowCount(1)
             self.ui.ExifDataTab.setItem(0, 0, QtWidgets.QTableWidgetItem('No Exif Data for this image'))
@@ -71,7 +83,14 @@ class ExifViewer(QMainWindow):
             items = exif.items()
             for i, elem in enumerate(items):
                 self.ui.ExifDataTab.setItem(i, 0, QtWidgets.QTableWidgetItem(str(elem[0])))
-                self.ui.ExifDataTab.setItem(i, 1, QtWidgets.QTableWidgetItem(str(elem[1])))
+                if elem[0] == 'GPSInfo':
+                    gps = QLabel()
+                    gps.setText('<a href="' + elem[1] + '">Open on Google Maps</a>')
+                    gps.setOpenExternalLinks(True)
+                    self.ui.ExifDataTab.setCellWidget(i, 1, gps)
+                else:
+                    self.ui.ExifDataTab.setItem(i, 1, QtWidgets.QTableWidgetItem(str(elem[1])))
+        self.ui.ExifDataTab.resizeColumnsToContents()
 
     def rotateRight(self):
         current_img = M.listPreviewImages.currentImg

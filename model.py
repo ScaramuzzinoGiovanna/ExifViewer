@@ -1,6 +1,7 @@
 from observable import Observable
-import PIL.ExifTags
+from PIL.ExifTags import GPSTAGS
 import PIL.Image
+
 
 
 class Model:
@@ -48,9 +49,51 @@ class Model:
             self.exif = {PIL.ExifTags.TAGS[k]: v
                          for k, v in img._getexif().items()
                          if k in PIL.ExifTags.TAGS}
+            if 'GPSInfo' in self.exif.keys():
+                latitude = str(self.getCoordinate(self.exif['GPSInfo'][2], self.exif['GPSInfo'][1]))
+                longitude = str(self.getCoordinate(self.exif['GPSInfo'][4], self.exif['GPSInfo'][3]))
+                self.exif['GPSInfo'] = "https://www.google.com/maps/search/?api=1&query=" + str(latitude) + "," + str(
+                    longitude)
             return self.exif
         except:
             return None
 
+    def getCoordinate(self, value, cardinal_point):
+        d, m, s = value
+
+        if cardinal_point in ['S', 'W']:
+            d = -d
+            m = -m
+            s = -s
+
+        return d + m / 60.0 + s / 3600.0
+
 
 M = Model()
+
+# for k, v in img._getexif().items():
+#     if k in PIL.ExifTags.TAGS:
+#         if k == 34853:
+#             print('qui')
+#             gps_data = {}
+#             for t in v:
+#                 sub_decoded = GPSTAGS.get(t, t)
+#                 gps_data[sub_decoded] = v[t]
+#             print(gps_data)
+# if isinstance(v, bytes):
+# if int(v, 16):
+#     v = v.decode()
+# else:
+# v = int.from_bytes(v, "big")
+
+# self.exif[PIL.ExifTags.TAGS[k]] = v
+# else:
+# self.exif[PIL.ExifTags.TAGS[k]] = v
+
+# self.exif = {[[v,v][k in PIL.ExifTags.TAGS] for k, v in img._getexif().items()]}
+# if not isinstance(v, bytes) else PIL.ExifTags.TAGS[k]: v.decode()}
+# geo_data = gpsphoto.getGPSData(path_img)
+# if 'Latitude' and 'Longitude' in geo_data.keys():
+#     self.exif['Latitude'] = geo_data['Latitude']
+#     self.exif['Longitude'] = geo_data['Longitude']
+# exif = self.process_exif(self.exif)

@@ -6,8 +6,8 @@
    <rect>
        <x>0</x>
        <y>0</y>
-       <width>2198</width>
-       <height>889</height>
+       <width>1000</width>
+       <height>696</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -51,56 +51,50 @@
        <number>0</number>
       </property>
       <item row="0" column="2">
-       <layout class="QHBoxLayout" name="DataExifTab_Layout">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetNoConstraint</enum>
-        </property>
-           <item>
-               <widget class="QTableWidget" name="ExifDataTab">
-                   <property name="enabled">
-                       <bool>true</bool>
-                   </property>
-                   <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                       </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                       <size>
-                           <width>200</width>
-                           <height>0</height>
-                       </size>
-                   </property>
-                   <property name="maximumSize">
-                       <size>
-                           <width>800</width>
-                           <height>16777215</height>
-                       </size>
-                   </property>
-                   <property name="font">
-                       <font>
-                           <pointsize>16</pointsize>
-                       </font>
-                   </property>
-                   <property name="contextMenuPolicy">
-                       <enum>Qt::NoContextMenu</enum>
-                   </property>
-                   <property name="layoutDirection">
-                       <enum>Qt::LeftToRight</enum>
-                   </property>
-                   <property name="autoFillBackground">
-                       <bool>false</bool>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::HLine</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>6</number>
-          </property>
+          <layout class="QHBoxLayout" name="DataExifTab_Layout">
+              <property name="sizeConstraint">
+                  <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <item>
+                  <widget class="QTableWidget" name="ExifDataTab">
+                      <property name="enabled">
+                          <bool>true</bool>
+                      </property>
+                      <property name="sizePolicy">
+                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                          </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                          <size>
+                              <width>0</width>
+                              <height>0</height>
+                          </size>
+                      </property>
+                      <property name="font">
+                          <font>
+                              <pointsize>13</pointsize>
+                          </font>
+                      </property>
+                      <property name="contextMenuPolicy">
+                          <enum>Qt::NoContextMenu</enum>
+                      </property>
+                      <property name="layoutDirection">
+                          <enum>Qt::LeftToRight</enum>
+                      </property>
+                      <property name="autoFillBackground">
+                          <bool>false</bool>
+                      </property>
+                      <property name="frameShape">
+                          <enum>QFrame::HLine</enum>
+                      </property>
+                      <property name="frameShadow">
+                          <enum>QFrame::Plain</enum>
+                      </property>
+                      <property name="lineWidth">
+                          <number>6</number>
+                      </property>
           <property name="midLineWidth">
            <number>0</number>
           </property>
@@ -122,205 +116,73 @@
           <property name="showDropIndicator" stdset="0">
            <bool>false</bool>
           </property>
-          <property name="alternatingRowColors">
-           <bool>false</bool>
-          </property>
-          <property name="selectionMode">
-              <enum>QAbstractItemView::ExtendedSelection</enum>
-          </property>
-          <property name="selectionBehavior">
-           <enum>QAbstractItemView::SelectRows</enum>
-          </property>
-                   <property name="horizontalScrollMode">
-                       <enum>QAbstractItemView::ScrollPerPixel</enum>
-                   </property>
-                   <property name="showGrid">
-                       <bool>true</bool>
-                   </property>
-                   <property name="gridStyle">
-                       <enum>Qt::SolidLine</enum>
-                   </property>
-                   <property name="cornerButtonEnabled">
-                       <bool>true</bool>
-                   </property>
-                   <property name="rowCount">
-                       <number>0</number>
-                   </property>
-                   <property name="columnCount">
-                       <number>2</number>
-                   </property>
-                   <attribute name="horizontalHeaderVisible">
-                       <bool>true</bool>
-                   </attribute>
-                   <attribute name="horizontalHeaderDefaultSectionSize">
-                       <number>394</number>
-                   </attribute>
-                   <attribute name="horizontalHeaderHighlightSections">
-                       <bool>false</bool>
-                   </attribute>
-                   <attribute name="horizontalHeaderMinimumSectionSize">
-                       <number>100</number>
-                   </attribute>
-                   <attribute name="verticalHeaderVisible">
-                       <bool>false</bool>
-                   </attribute>
-                   <attribute name="verticalHeaderCascadingSectionResizes">
-                       <bool>false</bool>
-                   </attribute>
-                   <column/>
-                   <column/>
-               </widget>
+                      <property name="alternatingRowColors">
+                          <bool>false</bool>
+                      </property>
+                      <property name="selectionMode">
+                          <enum>QAbstractItemView::ExtendedSelection</enum>
+                      </property>
+                      <property name="selectionBehavior">
+                          <enum>QAbstractItemView::SelectRows</enum>
+                      </property>
+                      <property name="horizontalScrollMode">
+                          <enum>QAbstractItemView::ScrollPerPixel</enum>
+                      </property>
+                      <property name="showGrid">
+                          <bool>true</bool>
+                      </property>
+                      <property name="gridStyle">
+                          <enum>Qt::SolidLine</enum>
+                      </property>
+                      <property name="cornerButtonEnabled">
+                          <bool>true</bool>
+                      </property>
+                      <property name="rowCount">
+                          <number>0</number>
+                      </property>
+                      <property name="columnCount">
+                          <number>2</number>
+                      </property>
+                      <attribute name="horizontalHeaderVisible">
+                          <bool>false</bool>
+                      </attribute>
+                      <attribute name="horizontalHeaderDefaultSectionSize">
+                          <number>100</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderHighlightSections">
+                          <bool>false</bool>
+                      </attribute>
+                      <attribute name="horizontalHeaderMinimumSectionSize">
+                          <number>100</number>
+                      </attribute>
+                      <attribute name="verticalHeaderVisible">
+                          <bool>false</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderCascadingSectionResizes">
+                          <bool>false</bool>
+                      </attribute>
+                      <column/>
+                      <column/>
+                  </widget>
         </item>
        </layout>
       </item>
       <item row="0" column="1">
-       <layout class="QVBoxLayout" name="ViewerImage_Layout">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item alignment="Qt::AlignHCenter">
-           <widget class="QPushButton" name="Geolocalization">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>16</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Geolocalization</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons/pin.png</normaloff>icons/pin.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>40</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="flat">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <property name="sizeConstraint">
-             <enum>QLayout::SetMinimumSize</enum>
-            </property>
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+          <layout class="QVBoxLayout" name="ViewerImage_Layout">
+              <property name="spacing">
+                  <number>7</number>
               </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>1000</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item alignment="Qt::AlignRight">
-             <widget class="QPushButton" name="button_rotateLeft">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                <horstretch>1</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="whatsThis">
-               <string>Rotate Left</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>icons/LeftRotate.png</normaloff>icons/LeftRotate.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>40</width>
-                <height>40</height>
-               </size>
-              </property>
-              <property name="flat">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item alignment="Qt::AlignRight">
-             <widget class="QPushButton" name="button_rotateRight">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                <horstretch>1</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="whatsThis">
-               <string>Rotate Rigth</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>icons/RightRotate.png</normaloff>icons/RightRotate.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>40</width>
-                <height>40</height>
-               </size>
-              </property>
-              <property name="flat">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QWidget" name="widgetImg" native="true">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
+              <item>
+                  <widget class="QWidget" name="widgetImg" native="true">
+                      <property name="sizePolicy">
+                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                          </sizepolicy>
+                      </property>
+                      <property name="maximumSize">
+                          <size>
+                              <width>1000</width>
             <height>16777215</height>
            </size>
           </property>
@@ -335,46 +197,52 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
-            <widget class="ImageView" name="image">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-                <property name="font">
-                    <font>
-                        <pointsize>18</pointsize>
-                        <weight>50</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                        <underline>false</underline>
-                        <strikeout>false</strikeout>
-                        <kerning>true</kerning>
-                    </font>
-                </property>
-                <property name="acceptDrops">
-                    <bool>true</bool>
-                </property>
-                <property name="autoFillBackground">
-                    <bool>false</bool>
-                </property>
-                <property name="styleSheet">
-                    <string notr="true"/>
-                </property>
-                <property name="text">
-                    <string notr="true">Select image</string>
-                </property>
-                <property name="scaledContents">
-                    <bool>false</bool>
-                </property>
-                <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                </property>
-                <property name="wordWrap">
-                    <bool>true</bool>
-                </property>
-            </widget>
+               <widget class="ImageView" name="image">
+                   <property name="sizePolicy">
+                       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Ignored">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                       </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                       <size>
+                           <width>1000</width>
+                           <height>16777215</height>
+                       </size>
+                   </property>
+                   <property name="font">
+                       <font>
+                           <pointsize>18</pointsize>
+                           <weight>50</weight>
+                           <italic>false</italic>
+                           <bold>false</bold>
+                           <underline>false</underline>
+                           <strikeout>false</strikeout>
+                           <kerning>true</kerning>
+                       </font>
+                   </property>
+                   <property name="acceptDrops">
+                       <bool>true</bool>
+                   </property>
+                   <property name="autoFillBackground">
+                       <bool>false</bool>
+                   </property>
+                   <property name="styleSheet">
+                       <string notr="true"/>
+                   </property>
+                   <property name="text">
+                       <string notr="true">No image loaded</string>
+                   </property>
+                   <property name="scaledContents">
+                       <bool>false</bool>
+                   </property>
+                   <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="wordWrap">
+                       <bool>true</bool>
+                   </property>
+               </widget>
            </item>
           </layout>
          </widget>
@@ -387,10 +255,10 @@
           <item>
            <widget class="QPushButton" name="button_previous">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
             </property>
             <property name="palette">
              <palette>
@@ -479,27 +347,87 @@
             <property name="checkable">
              <bool>false</bool>
             </property>
-            <property name="autoExclusive">
-             <bool>false</bool>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-            <property name="default">
-             <bool>false</bool>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
+               <property name="autoExclusive">
+                   <bool>false</bool>
+               </property>
+               <property name="autoDefault">
+                   <bool>false</bool>
+               </property>
+               <property name="default">
+                   <bool>false</bool>
+               </property>
+               <property name="flat">
+                   <bool>true</bool>
+               </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="button_next">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+             <item alignment="Qt::AlignHCenter">
+                 <widget class="QPushButton" name="button_rotateLeft">
+                     <property name="sizePolicy">
+                         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                             <horstretch>1</horstretch>
+                             <verstretch>0</verstretch>
+                         </sizepolicy>
+                     </property>
+                     <property name="whatsThis">
+                         <string>Rotate Left</string>
+                     </property>
+                     <property name="text">
+                         <string/>
+                     </property>
+                     <property name="icon">
+                         <iconset>
+                             <normaloff>icons/LeftRotate.png</normaloff>icons/LeftRotate.png
+                         </iconset>
+                     </property>
+                     <property name="iconSize">
+                         <size>
+                             <width>40</width>
+                             <height>40</height>
+                         </size>
+                     </property>
+                     <property name="flat">
+                         <bool>true</bool>
+                     </property>
+                 </widget>
+             </item>
+             <item alignment="Qt::AlignHCenter">
+                 <widget class="QPushButton" name="button_rotateRight">
+                     <property name="sizePolicy">
+                         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                             <horstretch>1</horstretch>
+                             <verstretch>0</verstretch>
+                         </sizepolicy>
+                     </property>
+                     <property name="whatsThis">
+                         <string>Rotate Rigth</string>
+                     </property>
+                     <property name="text">
+                         <string/>
+                     </property>
+                     <property name="icon">
+                         <iconset>
+                             <normaloff>icons/RightRotate.png</normaloff>icons/RightRotate.png
+                         </iconset>
+                     </property>
+                     <property name="iconSize">
+                         <size>
+                             <width>40</width>
+                             <height>40</height>
+                         </size>
+                     </property>
+                     <property name="flat">
+                         <bool>true</bool>
+                     </property>
+                 </widget>
+             </item>
+             <item>
+                 <widget class="QPushButton" name="button_next">
+                     <property name="sizePolicy">
+                         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                         </sizepolicy>
             </property>
             <property name="cursor">
              <cursorShape>ArrowCursor</cursorShape>
@@ -697,16 +625,22 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="button_deleteAllImages">
-          <property name="font">
-           <font>
-            <pointsize>16</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Delete All</string>
-          </property>
-         </widget>
+            <widget class="QPushButton" name="button_deleteAllImages">
+                <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="font">
+                    <font>
+                        <pointsize>16</pointsize>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>Delete All</string>
+                </property>
+            </widget>
         </item>
        </layout>
       </item>
