@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLabel, QListWidgetItem
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QPixmap, QIcon, QFont
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap, QIcon
 from ui_exifViewer import Ui_ExifViewer
 from model import M
 import sys
@@ -14,7 +15,6 @@ class ExifViewer(QMainWindow):
         # set up the user interface from Designer
         self.ui = Ui_ExifViewer()
         self.ui.setupUi(self)
-
         self.initTable()
 
         self.ui.button_rotateRight.clicked.connect(self.rotateRight)
@@ -34,10 +34,12 @@ class ExifViewer(QMainWindow):
         self.ui.ExifDataTab.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem('Exif'))
         self.ui.ExifDataTab.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem('Data'))
         self.ui.ExifDataTab.horizontalHeader().setVisible(True)
+        self.ui.ExifDataTab.horizontalHeader().setDefaultAlignment(Qt.AlignLeft)
         font = self.ui.ExifDataTab.horizontalHeader().font()
-        font.setPointSize(16)
+        font.setPointSize(14)
         font.setBold(True)
         self.ui.ExifDataTab.horizontalHeader().setFont(font)
+        self.ui.ExifDataTab.setColumnWidth(0, 300)
 
     def show_preview_image_into_list(self, img_path):
         for img in img_path:
@@ -56,6 +58,7 @@ class ExifViewer(QMainWindow):
                 self.ui.listWidget.takeItem(self.ui.listWidget.row(item))
         if delCurrentImageUp == True:
             self.ui.image.clear()
+            self.ui.image.img = None
             self.ui.ExifDataTab.clearContents()
             self.ui.ExifDataTab.setRowCount(0)
             self.defaultImage()
@@ -78,6 +81,7 @@ class ExifViewer(QMainWindow):
         if exif == None or len(exif) == 0:
             self.ui.ExifDataTab.setRowCount(1)
             self.ui.ExifDataTab.setItem(0, 0, QtWidgets.QTableWidgetItem('No Exif Data for this image'))
+            self.ui.ExifDataTab.setItem(0, 1, QtWidgets.QTableWidgetItem(''))
         else:
             self.ui.ExifDataTab.setRowCount(len(exif))
             items = exif.items()
@@ -90,7 +94,7 @@ class ExifViewer(QMainWindow):
                     self.ui.ExifDataTab.setCellWidget(i, 1, gps)
                 else:
                     self.ui.ExifDataTab.setItem(i, 1, QtWidgets.QTableWidgetItem(str(elem[1])))
-        self.ui.ExifDataTab.resizeColumnsToContents()
+        self.ui.ExifDataTab.horizontalHeader().setResizeContentsPrecision(-1)
 
     def rotateRight(self):
         current_img = M.listPreviewImages.currentImg
@@ -101,9 +105,6 @@ class ExifViewer(QMainWindow):
         current_img = M.listPreviewImages.currentImg
         if current_img != None:
             self.ui.image.rotateLeft()
-
-    def geolocalization(self):
-        self.ui.image.geolocalization()
 
 
 if __name__ == '__main__':

@@ -14,7 +14,10 @@ class ListPreviewImages(QListWidget):
             super(ListPreviewImages, self).mousePressEvent(event)
 
     def mouseDoubleClickEvent(self, event):
-        item = self.currentItem()
-        self.clearSelection()
-        item.setSelected(True)
-        super(ListPreviewImages, self).mouseDoubleClickEvent(event)
+        try:
+            item = self.currentItem()
+            self.clearSelection()
+            item.setSelected(True)
+            super(ListPreviewImages, self).mouseDoubleClickEvent(event)
+        except:
+            print('No item selected')

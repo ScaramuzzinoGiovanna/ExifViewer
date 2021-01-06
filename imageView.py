@@ -34,6 +34,3 @@ class ImageView(QLabel):
     def rotateLeft(self):
         self.img = self.img.transformed(QTransform().rotate(-90))
         self.resize_img()
-
-    def geolocalization(self):
-        pass

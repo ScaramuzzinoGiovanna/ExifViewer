@@ -3,7 +3,6 @@ from PIL.ExifTags import GPSTAGS
 import PIL.Image
 
 
-
 class Model:
     def __init__(self):
         self.listPreviewImages = Observable()
@@ -70,30 +69,3 @@ class Model:
 
 
 M = Model()
-
-# for k, v in img._getexif().items():
-#     if k in PIL.ExifTags.TAGS:
-#         if k == 34853:
-#             print('qui')
-#             gps_data = {}
-#             for t in v:
-#                 sub_decoded = GPSTAGS.get(t, t)
-#                 gps_data[sub_decoded] = v[t]
-#             print(gps_data)
-# if isinstance(v, bytes):
-# if int(v, 16):
-#     v = v.decode()
-# else:
-# v = int.from_bytes(v, "big")
-
-# self.exif[PIL.ExifTags.TAGS[k]] = v
-# else:
-# self.exif[PIL.ExifTags.TAGS[k]] = v
-
-# self.exif = {[[v,v][k in PIL.ExifTags.TAGS] for k, v in img._getexif().items()]}
-# if not isinstance(v, bytes) else PIL.ExifTags.TAGS[k]: v.decode()}
-# geo_data = gpsphoto.getGPSData(path_img)
-# if 'Latitude' and 'Longitude' in geo_data.keys():
-#     self.exif['Latitude'] = geo_data['Latitude']
-#     self.exif['Longitude'] = geo_data['Longitude']
-# exif = self.process_exif(self.exif)
