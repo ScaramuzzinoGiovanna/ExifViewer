@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1920</width>
-    <height>600</height>
+    <height>771</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -198,7 +198,7 @@
     <item row="0" column="0">
      <layout class="QGridLayout" name="externalGrid_layout">
       <property name="sizeConstraint">
-       <enum>QLayout::SetDefaultConstraint</enum>
+       <enum>QLayout::SetNoConstraint</enum>
       </property>
       <property name="verticalSpacing">
        <number>0</number>
@@ -400,26 +400,26 @@
          <number>7</number>
         </property>
         <property name="sizeConstraint">
-         <enum>QLayout::SetFixedSize</enum>
+         <enum>QLayout::SetMinAndMaxSize</enum>
         </property>
         <item>
          <widget class="QWidget" name="widgetImg" native="true">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="minimumSize">
            <size>
-            <width>0</width>
-            <height>0</height>
+            <width>1</width>
+            <height>1</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>16777215</width>
-            <height>16777215</height>
+            <width>800</width>
+            <height>800</height>
            </size>
           </property>
           <property name="font">
@@ -432,18 +432,21 @@
            <string notr="true"/>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetNoConstraint</enum>
+           </property>
            <item row="0" column="0">
             <widget class="ImageView" name="image">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
              <property name="maximumSize">
               <size>
-               <width>16777215</width>
-               <height>16777215</height>
+               <width>800</width>
+               <height>800</height>
               </size>
              </property>
              <property name="font">
@@ -467,10 +470,7 @@
               <string notr="true"/>
              </property>
              <property name="text">
-              <string notr="true">No image loaded</string>
-             </property>
-             <property name="scaledContents">
-              <bool>false</bool>
+              <string notr="true">No loaded image</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

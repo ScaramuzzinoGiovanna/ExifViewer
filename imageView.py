@@ -9,8 +9,10 @@ class ImageView(QLabel):
         QLabel.__init__(self, img_w)
         self.img = None
 
+
     def upload_img(self, path_img):
         self.img = QPixmap(path_img)
+        self.setMax = False
         self.resize_img()
 
     def resize_img(self):
@@ -21,9 +23,10 @@ class ImageView(QLabel):
         self.setMaximumSize(img_resized.width(), img_resized.height())
         self.setPixmap(img_resized)
         self.adjustSize()
+        self.setMax = True
 
     def resizeEvent(self, event):
-        if self.img != None:
+        if self.img != None and self.setMax == True:
             self.setPixmap(self.img.scaled(QSize(self.size().width(), self.size().height()), Qt.KeepAspectRatio))
         super().resizeEvent(event)
 
