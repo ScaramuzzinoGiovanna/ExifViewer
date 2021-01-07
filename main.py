@@ -19,10 +19,10 @@ class ExifViewer(QMainWindow):
 
         self.ui.button_rotateRight.clicked.connect(self.rotateRight)
         self.ui.button_rotateLeft.clicked.connect(self.rotateLeft)
-        self.ui.button_previous.clicked.connect(M.previous_img)
-        self.ui.button_next.clicked.connect(M.next_img)
-        self.ui.button_addImages.clicked.connect(lambda: M.add_img(
-            QFileDialog.getOpenFileNames(self, 'Open file', expanduser("~"), "Image files (*.jpg)")))
+        self.ui.button_previous.clicked.connect(M.upload_previous_img)
+        self.ui.button_next.clicked.connect(M.upload_next_img)
+        self.ui.button_addImages.clicked.connect(lambda: M.add_imgs(
+            QFileDialog.getOpenFileNames(self, 'Open file', expanduser("~"), "Image files (*.jpg)")[0]))
         self.ui.button_deleteAllImages.clicked.connect(M.delete_AllImgs)
         self.ui.button_deleteSelectedImages.clicked.connect(
             lambda: M.delete_SelectedImgs(self.ui.listWidget.selectedItems()))

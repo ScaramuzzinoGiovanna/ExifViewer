@@ -31,17 +31,18 @@ class Observable(QObject):
             self.listElem.append(elem)
         self.imgAdded.emit(newElems)  # emesso dopo che il valore è stato cambato
 
-    def remove_imgs(self, items):
+    def remove_imgs(self, path_imgs, items):
         current = False
-        imgs = [i.toolTip() for i in items]
-        for elem in imgs:
+        for elem in path_imgs:
             self.listElem.remove(elem)
             if elem == self.currentImg:
                 current = True
+                self.currentImg = None
         self.imgDel.emit([items, current])
 
     def remove_all_imgs(self):
         self.listElem = []
+        self.currentImg = None
         self.imgDel.emit([1, True])
 
     def upload_img(self, path_img, exif):

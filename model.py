@@ -1,6 +1,7 @@
 from observable import Observable
 from PIL.ExifTags import GPSTAGS
 import PIL.Image
+import collections
 
 
 class Model:
@@ -10,15 +11,38 @@ class Model:
     def observe(self, slot1, slot2, slot3):
         self.listPreviewImages.observe(slot1, slot2, slot3)
 
-    def add_img(self, path_img):
-        path_img = path_img[0]
-        self.listPreviewImages.values = path_img  # set
+    def add_imgs(self, path_imgs):
+        try:
+            for img in path_imgs:
+                if img in self.listPreviewImages.values:
+                    print('image {} is already in the list'.format(img))
+                    path_imgs.remove(img)
+            self.listPreviewImages.values = path_imgs  # set
+            if self.listPreviewImages.currentImg == None:
+                self.upload_img(self.listPreviewImages.values[0])
+        except:
+            return
 
     def delete_AllImgs(self):
         self.listPreviewImages.remove_all_imgs()
 
     def delete_SelectedImgs(self, items):
-        self.listPreviewImages.remove_imgs(items)
+        path_imgs_del = [i.toolTip() for i in items]
+        if collections.Counter(path_imgs_del) == collections.Counter(self.listPreviewImages.values):
+            print('deleted all imgs')
+            return self.delete_AllImgs()
+        current_img = self.listPreviewImages.currentImg
+        if current_img in path_imgs_del:  # if the current img is deleted, upload the next img
+            img_up = self.search_up_img(path_imgs_del[path_imgs_del.index(current_img):])
+            self.upload_img(img_up)
+        self.listPreviewImages.remove_imgs(path_imgs_del, items)
+
+    def search_up_img(self, next_partial_imgs_del):
+        # search the next uploaded image which is not deleted
+        for img in next_partial_imgs_del:
+            next = self.get_next_img(img)
+            if next not in next_partial_imgs_del:
+                return next
 
     def upload_img(self, path_img):
         if type(path_img) != str:
@@ -26,21 +50,33 @@ class Model:
         exif = self.extract_exif_data(path_img)
         self.listPreviewImages.upload_img(path_img, exif)
 
-    def previous_img(self):
+    def upload_previous_img(self):
         current_img = self.listPreviewImages.currentImg
-        if current_img != None and current_img in self.listPreviewImages.values:  # TODO: qui volendo puoi impostare che venga selezionata l'imm dopo quando viene vcancellata una imm
-            list = self.listPreviewImages.values
-            indx_prev = (list.index(current_img) - 1) % len(list)
-            prev_img = list[indx_prev]
+        if current_img != None:
+            prev_img = self.get_prev_img(current_img)
             self.upload_img(prev_img)
+        else:
+            pass
 
-    def next_img(self):
+    def get_prev_img(self, current_img):
+        list = self.listPreviewImages.values
+        indx_prev = (list.index(current_img) - 1) % len(list)
+        prev_img = list[indx_prev]
+        return prev_img
+
+    def upload_next_img(self):
         current_img = self.listPreviewImages.currentImg
-        if current_img != None and current_img in self.listPreviewImages.values:
-            list = self.listPreviewImages.values
-            indx_prev = (list.index(current_img) + 1) % len(list)
-            prev_img = list[indx_prev]
-            self.upload_img(prev_img)
+        if current_img != None:
+            next_img = self.get_next_img(current_img)
+            self.upload_img(next_img)
+        else:
+            pass
+
+    def get_next_img(self, current_img):
+        list = self.listPreviewImages.values
+        indx_next = (list.index(current_img) + 1) % len(list)
+        next_img = list[indx_next]
+        return next_img
 
     def extract_exif_data(self, path_img):
         try:
