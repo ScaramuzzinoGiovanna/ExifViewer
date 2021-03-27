@@ -1,7 +1,7 @@
 # ExifViewer
 EXIF metadata viewer of JPEG images.
 
-_Mini project of human computer interaction course_
+_Mini project of human computer interaction course_.
 
 # Installation
 1. Clone this repository with:
@@ -27,7 +27,7 @@ The application allow you to:
 3. __View an image__ by selecting (with double click of the mouse) it from the list. By default the first image in the list is shown. This image can reach a __maximum size of 512 pixels__, with the resizing of the window.
 5. The displayed image can be __rotated 90 degrees left and right__ using the central buttons below it.
 6. The displayed image can also be __changed to the previous or next one__ in the list using the buttons on the right and left below it.
-7. View the __exif data__ of the image in a table on the right.
-8. If an image has __GPS geolocation tags__ (GPSInfo) in its EXIF tag set, the link to open the GPS location on Google Maps is shown in the Data column.
+7. __View__ the __exif data__ of the image in a table on the right.
+8. If an image has GPS geolocation tags (GPSInfo) in its EXIF tag set, the __link to open the GPS location on Google Maps__ is shown in the Data column.
 
 **note: 1. 2. and 8. are the __extra features__ of the project: view multiple images and geolocalizaton.
