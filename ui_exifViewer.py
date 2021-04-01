@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_ExifViewer(object):
     def setupUi(self, ExifViewer):
         ExifViewer.setObjectName("ExifViewer")
@@ -42,7 +43,7 @@ class Ui_ExifViewer(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.ExifDataTab.sizePolicy().hasHeightForWidth())
         self.ExifDataTab.setSizePolicy(sizePolicy)
-        self.ExifDataTab.setMinimumSize(QtCore.QSize(400, 0))
+        self.ExifDataTab.setMinimumSize(QtCore.QSize(550, 0))
         self.ExifDataTab.setMaximumSize(QtCore.QSize(16777215, 16777215))
         font = QtGui.QFont()
         font.setPointSize(11)
@@ -114,6 +115,7 @@ class Ui_ExifViewer(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.listWidget.sizePolicy().hasHeightForWidth())
         self.listWidget.setSizePolicy(sizePolicy)
+        self.listWidget.setMinimumSize(QtCore.QSize(0, 150))
         self.listWidget.setAcceptDrops(True)
         self.listWidget.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
@@ -289,7 +291,9 @@ class Ui_ExifViewer(object):
         self.button_next.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.button_next.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("icons/right-arrow.png"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        icon3.addPixmap(QtGui.QPixmap("icons/right-arrow.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("../github projects/ExifViewer/icons/right-arrow.png"), QtGui.QIcon.Active,
+                        QtGui.QIcon.On)
         self.button_next.setIcon(icon3)
         self.button_next.setIconSize(QtCore.QSize(40, 40))
         self.button_next.setFlat(True)
@@ -308,13 +312,14 @@ class Ui_ExifViewer(object):
 
     def retranslateUi(self, ExifViewer):
         _translate = QtCore.QCoreApplication.translate
-        ExifViewer.setWindowTitle(_translate("ExifViewer", "Exif data"))
+        ExifViewer.setWindowTitle(_translate("ExifViewer", "Exif Viewer"))
         self.button_addImages.setText(_translate("ExifViewer", "Add Images"))
         self.listWidget.setSortingEnabled(False)
         self.button_deleteSelectedImages.setText(_translate("ExifViewer", "Delete Selected"))
         self.button_deleteAllImages.setText(_translate("ExifViewer", "Delete All"))
         self.button_rotateLeft.setWhatsThis(_translate("ExifViewer", "Rotate Left"))
         self.button_rotateRight.setWhatsThis(_translate("ExifViewer", "Rotate Rigth"))
+
 
 from imageView import ImageView
 from listPreviewImages import ListPreviewImages

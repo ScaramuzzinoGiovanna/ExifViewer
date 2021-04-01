@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Exif data</string>
+   <string>Exif Viewer</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -72,7 +72,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>400</width>
+             <width>550</width>
           <height>0</height>
          </size>
         </property>
@@ -251,29 +251,35 @@
            <enum>QLayout::SetMinimumSize</enum>
           </property>
           <item>
-           <widget class="ListPreviewImages" name="listWidget">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="acceptDrops">
-             <bool>true</bool>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAsNeeded</enum>
-            </property>
+              <widget class="ListPreviewImages" name="listWidget">
+                  <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                      </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                      <size>
+                          <width>0</width>
+                          <height>150</height>
+                      </size>
+                  </property>
+                  <property name="acceptDrops">
+                      <bool>true</bool>
+                  </property>
+                  <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                  </property>
+                  <property name="horizontalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAsNeeded</enum>
+                  </property>
             <property name="sizeAdjustPolicy">
              <enum>QAbstractScrollArea::AdjustToContents</enum>
             </property>
             <property name="editTriggers">
-             <set>
-              QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked
-             </set>
+                <set>
+                    QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked
+                </set>
             </property>
             <property name="dragEnabled">
              <bool>true</bool>
@@ -625,9 +631,9 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>icons/LeftRotate.png</normaloff>icons/LeftRotate.png
-             </iconset>
+                <iconset>
+                    <normaloff>icons/LeftRotate.png</normaloff>icons/LeftRotate.png
+                </iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -655,9 +661,9 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>icons/RightRotate.png</normaloff>icons/RightRotate.png
-             </iconset>
+                <iconset>
+                    <normaloff>icons/RightRotate.png</normaloff>icons/RightRotate.png
+                </iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -685,9 +691,10 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <activeon>icons/right-arrow.png</activeon>
-             </iconset>
+                <iconset>
+                    <normaloff>icons/right-arrow.png</normaloff>
+                    <activeon>../github projects/ExifViewer/icons/right-arrow.png</activeon>icons/right-arrow.png
+                </iconset>
             </property>
             <property name="iconSize">
              <size>

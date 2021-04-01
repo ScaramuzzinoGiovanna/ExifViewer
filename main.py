@@ -1,11 +1,13 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLabel, QListWidgetItem
+import sys
+from os.path import expanduser
+
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QIcon
-from ui_exifViewer import Ui_ExifViewer
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLabel, QListWidgetItem
+
 from model import M
-import sys
-from os.path import expanduser
+from ui_exifViewer import Ui_ExifViewer
 
 
 class ExifViewer(QMainWindow):
@@ -17,6 +19,7 @@ class ExifViewer(QMainWindow):
         self.ui.setupUi(self)
         self.initTable()
 
+        # Connect buttons with functions
         self.ui.button_rotateRight.clicked.connect(self.rotateRight)
         self.ui.button_rotateLeft.clicked.connect(self.rotateLeft)
         self.ui.button_previous.clicked.connect(M.upload_previous_img)
@@ -28,9 +31,10 @@ class ExifViewer(QMainWindow):
             lambda: M.delete_SelectedImgs(self.ui.listWidget.selectedItems()))
         self.ui.listWidget.itemDoubleClicked.connect(lambda: M.upload_img(self.ui.listWidget.currentItem()))
 
-        M.observe(self.show_preview_image_into_list, self.delete_preview, self.show_img)
+        M.observe(self.show_preview_images_into_list, self.delete_preview_images_from_list, self.show_img)
 
     def initTable(self):
+        """ initialize the exif data table """
         self.ui.ExifDataTab.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem('Exif'))
         self.ui.ExifDataTab.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem('Data'))
         self.ui.ExifDataTab.horizontalHeader().setVisible(True)
@@ -41,32 +45,38 @@ class ExifViewer(QMainWindow):
         self.ui.ExifDataTab.horizontalHeader().setFont(font)
         self.ui.ExifDataTab.setColumnWidth(0, 300)
 
-    def show_preview_image_into_list(self, img_path):
+    def show_preview_images_into_list(self, img_path):
+        """ adds one or more thumbnail(previews) images to the list """
         for img in img_path:
             icon = QIcon(QPixmap(img))
             item = QListWidgetItem(icon, None)
             item.setToolTip(img)
             self.ui.listWidget.addItem(item)
 
-    def delete_preview(self, sign):
+    def delete_preview_images_from_list(self, sign):
+        """ delete one or more thumbnail(previews) images to the list """
         items = sign[0]
         delCurrentImageUp = sign[1]
-        if items == 1:  # flag che indica che devo eliminare tutte le immagini
+        if items == 1:  # flag indicating that all images must be deleted from the list
             self.ui.listWidget.clear()
         else:
             for item in items:
                 self.ui.listWidget.takeItem(self.ui.listWidget.row(item))
+        # if preview image is the one displayed
         if delCurrentImageUp == True:
             self.ui.image.clear()
             self.ui.image.img = None
             self.ui.ExifDataTab.clearContents()
             self.ui.ExifDataTab.setRowCount(0)
-            self.defaultImage()
+            if M.listImages.currentImage == None:
+                self.defaultImage()
 
     def defaultImage(self):
+        """ sets the default text when there are no images to display """
         self.ui.image.setText('No image loaded')
 
     def show_img(self, item_info):
+        """ shows the selected image and its exif data """
         path_img = item_info[0]
         indx = item_info[1]
         exif = item_info[2]
@@ -76,6 +86,7 @@ class ExifViewer(QMainWindow):
         self.show_exifData(exif)
 
     def show_exifData(self, exif):
+        """ show exif data """
         self.ui.ExifDataTab.clearContents()
 
         if exif == None or len(exif) == 0:
@@ -97,12 +108,14 @@ class ExifViewer(QMainWindow):
         self.ui.ExifDataTab.horizontalHeader().setResizeContentsPrecision(-1)
 
     def rotateRight(self):
-        current_img = M.listPreviewImages.currentImg
+        """ rotate the image 90 degrees to the right """
+        current_img = M.listImages.currentImage
         if current_img != None:
             self.ui.image.rotateRight()
 
     def rotateLeft(self):
-        current_img = M.listPreviewImages.currentImg
+        """ rotate the image 90 degrees to the left """
+        current_img = M.listImages.currentImage
         if current_img != None:
             self.ui.image.rotateLeft()
 
