@@ -31,3 +31,5 @@ The application allow you to:
 8. If an image has GPS geolocation tags (GPSInfo) in its EXIF tag set, the __link to open the GPS location on Google Maps__ is shown in the Data column.
 
 **note: 1. 2. and 8. are the __extra features__ of the project: view multiple images and geolocalizaton.
+
+![alt text](images/Screenshot.png?raw=true)
